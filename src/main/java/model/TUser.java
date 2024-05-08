@@ -19,7 +19,7 @@ public class TUser implements Serializable {
 
 	@Id
 	@Column(name="id_user")
-	private int idUser;
+	private Integer idUser;
 
 	@Column(name="admin_user")
 	private byte adminUser;
