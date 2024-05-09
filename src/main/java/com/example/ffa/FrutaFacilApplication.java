@@ -12,5 +12,4 @@ public class FrutaFacilApplication {
 		SpringApplication.run(FrutaFacilApplication.class, args);
 		
 	}
-
 }
