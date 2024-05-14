@@ -28,6 +28,10 @@ public class MyService {
     public List<TUser> getUser() {
         return dao.getUser();
     }
+    public List<Object[]> getPriceWithFruitAndShopName() {
+        return dao.getPriceWithFruitAndShopName();
+    }
+
 
     
     public void addFruit(TFruit fruit) {
@@ -70,7 +74,6 @@ public class MyService {
     public void deleteUser(Long userId) {
         dao.deleteUser(userId);
     }
-
     
     // OTHERS
     public List<TUser> obtenerTodosLosUsersBaja() {
@@ -79,6 +82,11 @@ public class MyService {
 
     public TUser searchUserByNameAndPassword(String username, String password) {
         return dao.searchUserByNameAndPassword(username, password);
+    }
+    
+    // SEARCH FRUITSHOPS
+    public List<TFruitShop> searchFruitShopsByName(String name) {
+        return dao.searchFruitShopsByName(name);
     }
 }
 

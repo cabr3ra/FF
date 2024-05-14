@@ -49,7 +49,12 @@ public class Controller {
     public List<TUser> getUser() {
         return service.getUser();
     }
-    
+    @GetMapping(value = "PricesWithName", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Object[]>> getPriceWithFruitAndShopName() {
+        List<Object[]> priceData = service.getPriceWithFruitAndShopName();
+        return ResponseEntity.ok(priceData);
+    }
+        
     
     // POST
     @PostMapping(value = "Fruits/add", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -118,9 +123,7 @@ public class Controller {
         service.deleteUser(userId);
         return ResponseEntity.ok("Usuario eliminado exitosamente.");
     }
-
-
-    
+   
     // OTHERS
     @GetMapping(value = "Users/baja", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -140,5 +143,12 @@ public class Controller {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas.");
         }
+    }
+    
+    // SEARCH FRUITSHOPS
+    @GetMapping(value = "FruitShops/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<TFruitShop> searchFruitShopsByName(@RequestParam("name") String name) {
+        return service.searchFruitShopsByName(name);
     }
 }

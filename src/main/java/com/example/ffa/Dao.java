@@ -2,14 +2,16 @@ package com.example.ffa;
 
 import java.util.List;
 
+import javax.management.Query;
+
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
-
 import model.TFruit;
 import model.TFruitShop;
 import model.TPrice;
@@ -25,7 +27,7 @@ public class Dao {
         return entityManager.createQuery("SELECT tf FROM TFruit tf", TFruit.class).getResultList();
     }
     public List<TFruitShop> getFruitShop() {
-        return entityManager.createQuery("SELECT tfs FROM TFruitShop tfs", TFruitShop.class).getResultList();
+        return entityManager.createQuery("SELECT tfs FROM TFruit_Shop tfs", TFruitShop.class).getResultList();
     }
     public List<TPrice> getPrice() {
         return entityManager.createQuery("SELECT tp FROM TPrice tp", TPrice.class).getResultList();
@@ -33,6 +35,16 @@ public class Dao {
     public List<TUser> getUser() {
         return entityManager.createQuery("SELECT tu FROM TUser tu", TUser.class).getResultList();
     }
+	public List<Object[]> getPriceWithFruitAndShopName() {
+	    String query = "SELECT tp.price, tf.name_fruit, tfs.name_fruit_shop " +
+	                   "FROM TPrice tp " +
+	                   "JOIN TFruit tf ON tp.id_fruit_p = tf.id_fruit " +
+	                   "JOIN TFruit_shop tfs ON tp.id_fruit_shop_p = tfs.id_fruit_shop";
+	    jakarta.persistence.Query nativeQuery = entityManager.createNativeQuery(query);
+	    return nativeQuery.getResultList();
+	}
+
+	
     
     @Transactional
     public void addFruit(TFruit fruit) {
@@ -98,9 +110,8 @@ public class Dao {
             entityManager.remove(user);
         }
     }
-     
-
-    // OTHERS
+    
+    // USER
     public List<TUser> obtenerTodosLosUsersBaja() {
         return entityManager.createQuery("SELECT u FROM Users u WHERE u.baja = true", TUser.class).getResultList();
     }
@@ -113,5 +124,14 @@ public class Dao {
         } catch (NoResultException e) {
             return null;
         }
+    }
+    
+    // SEARCH FRUITSHOPS
+    public List<TFruitShop> searchFruitShopsByName(String name) {
+        return entityManager.createQuery(
+                "SELECT f FROM TFruitShop f WHERE LOWER(f.nameFruitShop) LIKE LOWER(CONCAT('%', :name, '%'))",
+                TFruitShop.class)
+                .setParameter("name", name)
+                .getResultList();
     }
 }
