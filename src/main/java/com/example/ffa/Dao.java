@@ -117,7 +117,7 @@ public class Dao {
     }
     public TUser searchUserByNameAndPassword(String username, String contraseña) {
         try {
-            return entityManager.createQuery("SELECT u FROM Users u WHERE u.username = :username AND u.password = :password", TUser.class)
+            return entityManager.createQuery("SELECT u FROM TUser u WHERE u.usernameUser = :username AND u.passwordUser = :password", TUser.class)
                     .setParameter("username", username)
                     .setParameter("password", contraseña)
                     .getSingleResult();
@@ -125,6 +125,7 @@ public class Dao {
             return null;
         }
     }
+
     
     // SEARCH FRUITSHOPS
     public List<TFruitShop> searchFruitShopsByName(String name) {
