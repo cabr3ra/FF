@@ -127,6 +127,7 @@ public class Dao {
             return null;
         }
     }
+
     
     // SEARCH FRUITS BY NAME
     public List<Object[]> searchFruitsByName(String name) {
