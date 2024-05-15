@@ -27,7 +27,7 @@ public class Dao {
         return entityManager.createQuery("SELECT tf FROM TFruit tf", TFruit.class).getResultList();
     }
     public List<TFruitShop> getFruitShop() {
-        return entityManager.createQuery("SELECT tfs FROM TFruit_Shop tfs", TFruitShop.class).getResultList();
+        return entityManager.createQuery("SELECT tfs FROM TFruitShop tfs", TFruitShop.class).getResultList();
     }
     public List<TPrice> getPrice() {
         return entityManager.createQuery("SELECT tp FROM TPrice tp", TPrice.class).getResultList();
@@ -115,9 +115,11 @@ public class Dao {
     public List<TUser> obtenerTodosLosUsersBaja() {
         return entityManager.createQuery("SELECT u FROM Users u WHERE u.baja = true", TUser.class).getResultList();
     }
+    
+    // LOGIN
     public TUser searchUserByNameAndPassword(String username, String contraseña) {
         try {
-            return entityManager.createQuery("SELECT u FROM Users u WHERE u.username = :username AND u.password = :password", TUser.class)
+            return entityManager.createQuery("SELECT u FROM TUser u WHERE u.usernameUser = :username AND u.passwordUser = :password", TUser.class)
                     .setParameter("username", username)
                     .setParameter("password", contraseña)
                     .getSingleResult();
@@ -126,7 +128,20 @@ public class Dao {
         }
     }
     
-    // SEARCH FRUITSHOPS
+    // SEARCH FRUITS BY NAME
+    public List<Object[]> searchFruitsByName(String name) {
+        String queryStr = "SELECT tp.price, tf.nameFruit, tfs.nameFruitShop " +
+                          "FROM TPrice tp " +
+                          "JOIN TFruit tf ON tp.tfruit.idFruit = tf.idFruit " +
+                          "JOIN TFruitShop tfs ON tp.tfruitShop.idFruitShop = tfs.idFruitShop " +
+                          "WHERE LOWER(tf.nameFruit) LIKE LOWER(CONCAT('%', :name, '%'))";
+
+        TypedQuery<Object[]> query = entityManager.createQuery(queryStr, Object[].class);
+        query.setParameter("name", name);
+        return query.getResultList();
+    }
+    
+    // SEARCH FRUITSHOPS BY NAME
     public List<TFruitShop> searchFruitShopsByName(String name) {
         return entityManager.createQuery(
                 "SELECT f FROM TFruitShop f WHERE LOWER(f.nameFruitShop) LIKE LOWER(CONCAT('%', :name, '%'))",

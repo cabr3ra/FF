@@ -32,7 +32,6 @@ public class MyService {
         return dao.getPriceWithFruitAndShopName();
     }
 
-
     
     public void addFruit(TFruit fruit) {
         dao.addFruit(fruit);
@@ -79,14 +78,21 @@ public class MyService {
     public List<TUser> obtenerTodosLosUsersBaja() {
         return dao.obtenerTodosLosUsersBaja();
     }
-
+    
+    // LOGIN
     public TUser searchUserByNameAndPassword(String username, String password) {
         return dao.searchUserByNameAndPassword(username, password);
     }
     
-    // SEARCH FRUITSHOPS
+    //SEARCH FRUITS BY NAME
+    public List<Object[]> searchFruitsByName(String name) {
+        return dao.searchFruitsByName(name);
+    }
+    
+    // SEARCH FRUITSHOPS BY NAME
     public List<TFruitShop> searchFruitShopsByName(String name) {
         return dao.searchFruitShopsByName(name);
     }
+    
 }
 

@@ -54,6 +54,7 @@ public class Controller {
         List<Object[]> priceData = service.getPriceWithFruitAndShopName();
         return ResponseEntity.ok(priceData);
     }
+    
         
     
     // POST
@@ -130,6 +131,8 @@ public class Controller {
     public List<TUser> obtenerTodosLosUsersBaja() {
         return service.obtenerTodosLosUsersBaja();
     }
+    
+    // LOGIN 
     @GetMapping(value = "SearchUserLogin", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> searchUserByNameAndPassword(@RequestParam String username, @RequestParam String password) {
@@ -145,7 +148,15 @@ public class Controller {
         }
     }
     
-    // SEARCH FRUITSHOPS
+    // SEARCH FRUITS BY NAME
+    @GetMapping(value = "Prices/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Object[]> searchFruitsByName(@RequestParam("name") String name) {
+        return service.searchFruitsByName(name);
+    }
+
+    
+    // SEARCH FRUITSHOPS BY NAME
     @GetMapping(value = "FruitShops/search", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<TFruitShop> searchFruitShopsByName(@RequestParam("name") String name) {
