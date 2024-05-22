@@ -115,6 +115,8 @@ public class Dao {
     public List<TUser> obtenerTodosLosUsersBaja() {
         return entityManager.createQuery("SELECT u FROM Users u WHERE u.baja = true", TUser.class).getResultList();
     }
+    
+    
     public TUser searchUserByNameAndPassword(String username, String contraseña) {
         try {
             return entityManager.createQuery("SELECT u FROM TUser u WHERE u.usernameUser = :username AND u.passwordUser = :password", TUser.class)

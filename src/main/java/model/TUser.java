@@ -24,12 +24,6 @@ public class TUser implements Serializable {
 	@Column(name="id_user")
 	private Integer idUser;
 
-	@Column(name="admin_user")
-	private byte adminUser;
-
-	@Column(name="baja_user")
-	private byte bajaUser;
-
 	@Column(name="email_user")
 	private String emailUser;
 
@@ -54,22 +48,6 @@ public class TUser implements Serializable {
 
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
-	}
-
-	public byte getAdminUser() {
-		return this.adminUser;
-	}
-
-	public void setAdminUser(byte adminUser) {
-		this.adminUser = adminUser;
-	}
-
-	public byte getBajaUser() {
-		return this.bajaUser;
-	}
-
-	public void setBajaUser(byte bajaUser) {
-		this.bajaUser = bajaUser;
 	}
 
 	public String getEmailUser() {
