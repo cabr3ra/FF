@@ -31,6 +31,12 @@ public class MyService {
     public List<Object[]> getPriceWithFruitAndShopName() {
         return dao.getPriceWithFruitAndShopName();
     }
+    public List<Object[]> getPricesSortedByPriceAsc() {
+        return dao.getPricesSortedByPriceAsc();
+    }
+    public List<Object[]> getPricesSortedByPriceDesc() {
+        return dao.getPricesSortedByPriceDesc();
+    }
 
     
     public void addFruit(TFruit fruit) {

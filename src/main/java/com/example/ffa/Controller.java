@@ -54,6 +54,16 @@ public class Controller {
         List<Object[]> priceData = service.getPriceWithFruitAndShopName();
         return ResponseEntity.ok(priceData);
     }
+    @GetMapping(value = "PricesSortedAsc", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Object[]>> getPricesSortedByPriceAsc() {
+        List<Object[]> priceData = service.getPricesSortedByPriceAsc();
+        return ResponseEntity.ok(priceData);
+    }
+    @GetMapping(value = "PricesSortedDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Object[]>> getPricesSortedByPriceDesc() {
+        List<Object[]> priceData = service.getPricesSortedByPriceDesc();
+        return ResponseEntity.ok(priceData);
+    }
     
         
     

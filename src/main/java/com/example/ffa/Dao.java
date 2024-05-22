@@ -43,6 +43,25 @@ public class Dao {
 	    jakarta.persistence.Query nativeQuery = entityManager.createNativeQuery(query);
 	    return nativeQuery.getResultList();
 	}
+	public List<Object[]> getPricesSortedByPriceAsc() {
+	       String query = "SELECT tp.price, tf.name_fruit, tfs.name_fruit_shop " +
+	                      "FROM TPrice tp " +
+	                      "JOIN TFruit tf ON tp.id_fruit_p = tf.id_fruit " +
+	                      "JOIN TFruit_shop tfs ON tp.id_fruit_shop_p = tfs.id_fruit_shop " +
+	                      "ORDER BY tp.price ASC";
+	       jakarta.persistence.Query nativeQuery = entityManager.createNativeQuery(query);
+	       return nativeQuery.getResultList();
+	   }
+	   public List<Object[]> getPricesSortedByPriceDesc() {
+	       String query = "SELECT tp.price, tf.name_fruit, tfs.name_fruit_shop " +
+	                      "FROM TPrice tp " +
+	                      "JOIN TFruit tf ON tp.id_fruit_p = tf.id_fruit " +
+	                      "JOIN TFruit_shop tfs ON tp.id_fruit_shop_p = tfs.id_fruit_shop " +
+	                      "ORDER BY tp.price DESC";
+	       jakarta.persistence.Query nativeQuery = entityManager.createNativeQuery(query);
+	       return nativeQuery.getResultList();
+	   }
+
 
 	
     
