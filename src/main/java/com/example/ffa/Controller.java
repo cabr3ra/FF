@@ -166,7 +166,7 @@ public class Controller {
     }
 
     
-    // SEARCH FRUITSHOPS BY NAME
+    // Lista de Tiendas
     @GetMapping(value = "FruitShops/search", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<TFruitShop> searchFruitShopsByName(@RequestParam("name") String name) {

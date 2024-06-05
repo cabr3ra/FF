@@ -10,10 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 
 
-/**
- * The persistent class for the TUser database table.
- * 
- */
 @Entity
 @NamedQuery(name="TUser.findAll", query="SELECT tu FROM TUser tu")
 public class TUser implements Serializable {

@@ -32,6 +32,12 @@ public class TFruitShop implements Serializable {
 
 	@Column(name="phone_fruit_shop")
 	private String phoneFruitShop;
+	
+	@Column(name="horiz")
+	private double horiz;
+	
+	@Column(name="vertical")
+	private double vertical;
 
 	public TFruitShop() {
 	}
