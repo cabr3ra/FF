@@ -33,11 +33,27 @@ public class TFruitShop implements Serializable {
 	@Column(name="phone_fruit_shop")
 	private String phoneFruitShop;
 	
-	@Column(name="horiz")
-	private double horiz;
+	@Column(name="horizontal")
+	private double horizontal;
 	
 	@Column(name="vertical")
 	private double vertical;
+	
+	public double getHorizontal() {
+		return horizontal;
+	}
+
+	public void setHorizontal(double horizontal) {
+		this.horizontal = horizontal;
+	}
+
+	public double getVertical() {
+		return vertical;
+	}
+
+	public void setVertical(double vertical) {
+		this.vertical = vertical;
+	}
 
 	public TFruitShop() {
 	}
